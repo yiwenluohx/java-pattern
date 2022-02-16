@@ -1,7 +1,6 @@
 package com.study.pattern.service.composite02;
 
 import com.study.pattern.model.TraceTreeVo;
-import com.study.pattern.model.param.MetaClassParam;
 import com.study.pattern.model.param.NodeParam;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

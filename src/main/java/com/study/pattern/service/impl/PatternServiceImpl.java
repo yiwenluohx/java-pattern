@@ -44,6 +44,9 @@ public class PatternServiceImpl implements IPatternService {
         System.out.println("您选购的商品有：");
         BigBag.show();
         s = BigBag.calculation();
-        System.out.println("要支付的总价是：" + s + "元");
+
+        System.out.println("大袋要支付的总价是：" + s + "元");
+        mediumBag.show();
+        System.out.println("中代要支付的总价是：" + mediumBag.calculation() + "元");
     }
 }

@@ -1,5 +1,5 @@
 server:
-  port: 8392
+  port: 8391
 
 spring:
   #数据库连接
