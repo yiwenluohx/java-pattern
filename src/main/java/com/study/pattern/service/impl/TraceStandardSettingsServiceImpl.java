@@ -79,12 +79,7 @@ public class TraceStandardSettingsServiceImpl implements ITraceStandardSettingsS
         List<CategoryVo> categoryVoList = new ArrayList<>();
         List<CategoryResDto> resDtos = categoryHandler.platformCategoryList(pid, null);
         if (resDtos != null) {
-            resDtos.forEach(k -> {
-                CategoryVo categoryVo = new CategoryVo();
-                categoryVo.setCategoryId(k.getCategoryId());
-                categoryVo.setCategoryName(k.getCategoryName());
-                categoryVoList.add(categoryVo);
-            });
+            categoryVoList = resDtos.stream().map(k -> new CategoryVo(k.getCategoryId(), k.getCategoryName())).collect(Collectors.toList());
         }
         return categoryVoList;
     }
@@ -316,11 +311,11 @@ public class TraceStandardSettingsServiceImpl implements ITraceStandardSettingsS
     /**
      * 根据入参组装Map进行转换
      *
-     * @param nodeCode     元数据code
-     * @param pid          父id
-     * @param uiCode       uiCode
-     * @param limitType    限制类型
-     * @param categoryId   公共类目id
+     * @param nodeCode   元数据code
+     * @param pid        父id
+     * @param uiCode     uiCode
+     * @param limitType  限制类型
+     * @param categoryId 公共类目id
      * @return 组装map
      */
     private TraceStandardSettings getSettingEntity(Long rootId, String nodeCode, String nodeName, Long pid, String uiCode, Integer limitType, Long categoryId, Integer level) {

@@ -1,4 +1,4 @@
-package com.study.pattern.service.composite;
+package com.study.pattern.service.composite01;
 
 import java.util.ArrayList;
 

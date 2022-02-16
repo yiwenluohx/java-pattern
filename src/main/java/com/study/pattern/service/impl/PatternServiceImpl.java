@@ -1,8 +1,8 @@
 package com.study.pattern.service.impl;
 
 import com.study.pattern.service.IPatternService;
-import com.study.pattern.service.composite.Bags;
-import com.study.pattern.service.composite.Goods;
+import com.study.pattern.service.composite01.Bags;
+import com.study.pattern.service.composite01.Goods;
 import org.springframework.stereotype.Service;
 
 /**
