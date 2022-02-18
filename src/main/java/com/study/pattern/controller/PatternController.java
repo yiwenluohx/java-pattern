@@ -30,4 +30,8 @@ public class PatternController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @RequestMapping("/compose")
+    public ResponseEntity composePattern() {
+        return new ResponseEntity(patternService.composePattern(), HttpStatus.OK);
+    }
 }

@@ -16,4 +16,9 @@ public interface IPatternService {
      * 操作
      */
     void operate();
+
+    /**
+     * 组合模式
+     */
+    String composePattern();
 }
