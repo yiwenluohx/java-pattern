@@ -12,12 +12,12 @@ import com.study.pattern.model.LotteryResult;
  * <author>          <time>          <version>          <desc>
  * luohx            修改时间           1.0           事件监听接口
  */
-public interface EventListener {
+public interface EventListener<T> {
 
     /**
      * 监听事件进行后续处理， 如果方法的入参信息类型是变化的可以使用泛型<T>
      *
-     * @param result
+     * @param var1
      */
-    void doEvent(LotteryResult result);
+    void doEvent(T var1);
 }

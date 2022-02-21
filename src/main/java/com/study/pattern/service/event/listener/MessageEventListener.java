@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  * luohx            修改时间           1.0
  */
 @Slf4j
-public class MessageEventListener implements EventListener {
+public class MessageEventListener implements EventListener<LotteryResult> {
 
     /**
      * 上面提到事件接口添加泛型，如果有需要那么在事件的实现中就可以按照不同的类型进行包装事件内容
