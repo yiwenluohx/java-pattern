@@ -1,5 +1,7 @@
 package com.study.pattern.service;
 
+import com.study.pattern.model.LotteryResult;
+
 /**
  * ClassName: IPatternService
  * Description:
@@ -19,6 +21,16 @@ public interface IPatternService {
 
     /**
      * 组合模式
+     *
+     * @return
      */
     String composePattern();
+
+    /**
+     * 观察者模式
+     *
+     * @param uId
+     * @return
+     */
+    LotteryResult observe(String uId);
 }

@@ -2,23 +2,19 @@ package com.study.pattern.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.study.pattern.model.EngineResult;
-import com.study.pattern.model.TreeNode;
-import com.study.pattern.model.TreeNodeLink;
-import com.study.pattern.model.TreeRoot;
+import com.study.pattern.model.*;
 import com.study.pattern.model.aggregates.TreeRich;
 import com.study.pattern.service.IPatternService;
 import com.study.pattern.service.composite01.Bags;
 import com.study.pattern.service.composite01.Goods;
 import com.study.pattern.service.composite03.engine.IEngine;
 import com.study.pattern.service.composite03.engine.impl.TreeEngineHandle;
+import com.study.pattern.service.event.LotteryService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * ClassName: PatternServiceImpl
@@ -33,6 +29,10 @@ import java.util.Map;
 @Service
 @Slf4j
 public class PatternServiceImpl implements IPatternService {
+
+    @Autowired
+    private LotteryService lotteryService;
+
     @Override
     public void operate() {
         float s = 0;
@@ -195,6 +195,23 @@ public class PatternServiceImpl implements IPatternService {
         return JSON.toJSONString(result);
     }
 
+    @Override
+    public LotteryResult observe(String uId) {
+        return lotteryService.draw(uId);
+//        return doDraw(uId);
+    }
+
+
+    public LotteryResult doDraw(String uId) {
+        String lottery = this.lottery(uId);
+        // 发短信
+        log.info("给用户 {} 发送短信通知(短信)：{}", uId, lottery);
+        // 发MQ消息
+        log.info("记录用户 {} 摇号结果(MQ)：{}", uId, lottery);
+        // 结果
+        return new LotteryResult(uId, lottery, new Date());
+    }
+
     /**
      * 面向过程实现
      *
@@ -227,4 +244,16 @@ public class PatternServiceImpl implements IPatternService {
         }
         return null;
     }
+
+    /**
+     * 模拟摇号，但不是摇号算法
+     *
+     * @param uId 用户算法
+     * @return 摇号结果
+     */
+    private String lottery(String uId) {
+        return Math.abs(uId.hashCode()) % 2 == 0 ? "恭喜你，编码".concat(uId).concat("在本次摇号中签") : "很遗憾，编码".concat(uId).concat("在本次摇号未中签或摇号资格已过期");
+    }
+
+
 }
