@@ -25,6 +25,9 @@ public class ApiTest {
 
     private Logger logger = LoggerFactory.getLogger(ApiTest.class);
 
+    /**
+     * 使用Autowired直接将状态相关服务注入到map，解决需要手动创建map，将服务手动放入map
+     */
     @Autowired
     private Map<String, IState> stateMap;
 
