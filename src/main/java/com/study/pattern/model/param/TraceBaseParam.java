@@ -1,6 +1,5 @@
 package com.study.pattern.model.param;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
 
 import java.io.Serializable;
